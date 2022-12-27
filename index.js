@@ -28,7 +28,7 @@ const updateVideo = async () => {
   try {
     // Get video
     const result = await youtube.videos.list({
-      id: "ltG5ZuBZHt0 ",
+      id: "ltG5ZuBZHt0",
       part: "statistics,snippet",
     });
 
@@ -38,7 +38,7 @@ const updateVideo = async () => {
       await youtube.videos.update({
         part: "snippet",
         requestBody: {
-          id: "ltG5ZuBZHt0 ",
+          id: "ltG5ZuBZHt0",
           snippet: {
             title: `This video has ${stats.viewCount} views`,
             categoryId: 28,
