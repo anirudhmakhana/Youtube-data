@@ -1,6 +1,7 @@
 const { google } = require("googleapis");
 require("dotenv").config();
-const CronJob = require("cron").CronJob;
+const cron = require("node-cron");
+const moment = require("moment");
 
 const express = require("express");
 const app = express();
@@ -17,6 +18,7 @@ const oauth2Client = new google.auth.OAuth2(
 );
 
 const updateVideo = async () => {
+  console.log("sysdate ::==", moment());
   oauth2Client.setCredentials({ refresh_token: process.env.REFRESH_TOKEN });
 
   // YouTube client
@@ -45,14 +47,21 @@ const updateVideo = async () => {
           },
         },
       });
+      console.log("executed");
     }
   } catch (error) {
     console.log(error);
   }
 };
 
-const updateEvery8Mins = new CronJob("*/8 * * * * *", async () => {
-  updateVideo();
-});
+// const updateEvery8Mins = new CronJob("*/8 * * * * *", async () => {
+//   // updateVideo();
+//   console.log("run");
+// });
 
-updateEvery8Mins.start();
+// updateEvery8Mins.start();
+
+cron.schedule("*/8 * * * *", function () {
+  updateVideo();
+  console.log("running a task every 8 minutes");
+});
