@@ -42,7 +42,7 @@ const updateVideo = async () => {
         requestBody: {
           id: "ltG5ZuBZHt0",
           snippet: {
-            title: `This video has ${stats.viewCount} views`,
+            title: `This video has ${stats.viewCount} views, ${stats.likeCount} likes and ${stats.commentCount} comments.`,
             categoryId: 28,
           },
         },
