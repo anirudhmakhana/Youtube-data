@@ -15,9 +15,7 @@ const getTokens = async () => {
   //   console.log(res.tokens);
 
   // Get access and refresh tokens (if access_type is offline)
-  let { tokens } = await oauth2Client.getToken(
-    "4/0AWgavdftRNyvbO0CsyEv2vs5ua_fqqsCl3ONktOsamisVwy7krfR9x1mKOe8R1MVl3MIsw"
-  );
+  let { tokens } = await oauth2Client.getToken(process.env.CODE);
   oauth2Client.setCredentials(tokens);
   console.log(tokens);
 };
